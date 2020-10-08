@@ -5,6 +5,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from . import views
 
 urlpatterns = [
+    # favicon route
     path(
         "favicon.ico",
         RedirectView.as_view(
@@ -12,6 +13,8 @@ urlpatterns = [
         ),
         name="favicon",
     ),
+    
+    # routes that calls views in views.py
     path("create/", views.CalculatorInputCreate.as_view(), name="calculate"),
     path("create/<label>/", views.CalculatorInputCreate.as_view(), name="calculate",),
     path("edit/<label>/", views.CalculatorInputEdit.as_view(), name="calculate"),
@@ -28,6 +31,8 @@ urlpatterns = [
     #     views.acknowledgments.as_view(),
     #     name='acknowledgments'
     # ),
+
+    # more routes, calls methods inside views.py
     path("", views.ViewPlots.as_view(), name="image-page"),
     path("plot/<plottype>.<filetype>", views.plots, name="images"),
     path("download/allData.zip", views.data_output, name="data-output"),
